@@ -226,7 +226,7 @@ $.fn.ajaxSubmit = function(options) {
     // https://github.com/malsup/form/commit/588306aedba1de01388032d5f42a60159eea9228#commitcomment-2180219
     var fileInputs = $('input[type=file]:enabled', this).filter(function() { return $(this).val() !== ''; });
 
-    var hasFileInputs = fileInputs.length > 0;
+    var hasFileInputs = fileInputs.length > 0&&options.contentType!=="application/x-www-form-urlencoded"&&$(this).attr("enctype")!=="application/x-www-form-urlencoded"; // todo  如果请求中指定application/x-www-form-urlencoded 则忽略文件域;
     var mp = 'multipart/form-data';
     var multipart = ($form.attr('enctype') == mp || $form.attr('encoding') == mp);
 
